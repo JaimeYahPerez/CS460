@@ -147,10 +147,12 @@ int main(int argc, char** argv) {
 
         case State::SQUOTE:
             std::cout.put(c);
-            if (c == '\\') 
+            if (c == '\\') {
                 st = State::SQUOTE_ESC;
-            else if (c == '\'') 
+            }
+            else if (c == '\'') {
                 st = State::NORMAL;
+            }            
             break;
 
         case State::SQUOTE_ESC:
@@ -167,11 +169,24 @@ int main(int argc, char** argv) {
             }
             else {
                 std::cout.put('*');
-                if (c == '/') st = State::SLASH_MODE;
-                else if (c == '*') st = State::SAW_STAR;
-                else if (c == '"') { std::cout.put(c); st = State::DQUOTE; }
-                else if (c == '\'') { std::cout.put(c); st = State::SQUOTE; }
-                else { std::cout.put(c); st = State::NORMAL; }
+                if (c == '/') { 
+                    st = State::SLASH_MODE; 
+                }
+                else if (c == '*') { 
+                    st = State::SAW_STAR; 
+                }
+                else if (c == '"') { 
+                    std::cout.put(c); 
+                    st = State::DQUOTE; 
+                }
+                else if (c == '\'') { 
+                    std::cout.put(c); 
+                    st = State::SQUOTE; 
+                }
+                else { 
+                    std::cout.put(c); 
+                    st = State::NORMAL; 
+                }
             }
         }
 
@@ -186,8 +201,7 @@ int main(int argc, char** argv) {
     }
 
     if (st == State::BLOCK_COMMENT || st == State::BLOCK_STAR) {
-        std::cerr << "ERROR: Program contains C-style, unterminated comment on line "
-            << blockStartLine << "\n";
+        std::cerr << "ERROR: Program contains C-style, unterminated comment on line " << blockStartLine << "\n";
         return 1;
     }
 
