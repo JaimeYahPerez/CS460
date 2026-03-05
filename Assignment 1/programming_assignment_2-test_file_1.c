@@ -1,11 +1,10 @@
 // ***************************************************
-// * CS460: Programming Assignment 1: Test Program 2 *
+// * CS460: Programming Assignment 2: Test Program 1 *
 // ***************************************************
 procedure main (void)
 {
-  int /* hidden; int */ counter; 
+  int counter;
 
-  counter = /*2*/ 100;
-/* hidden = */ /*5;*/
+  counter = -2;
   printf ("counter = %d\n", counter);
 }
